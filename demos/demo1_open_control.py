@@ -14,9 +14,12 @@ import platform
 import sys
 from time import sleep
 
-import numpy as np
-
 from flexsea.device import Device
+
+
+def linspace(start, stop, num):
+    step = (stop-start) / (num - 1)
+    return [start + step * i for i in range(num)]
 
 
 if "windows" == platform.system().lower():
@@ -47,7 +50,7 @@ device.open()
 # Generate the array of voltages (millivolts) to loop over
 maxVoltage = 3000
 nVoltages = 10
-voltages = np.linspace(0, maxVoltage, nVoltages)
+voltages = linspace(0, maxVoltage, nVoltages)
 
 
 # Ramp up and down the voltages several times
